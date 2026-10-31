@@ -23,11 +23,12 @@ Sample app that showcases **[swift-toolkit](https://github.com/RknDEV1/swift-too
 
 1. Clone this repository
 2. Create a new iOS App project (SwiftUI)
-3. Add the local package or the GitHub packages:
+3. Add the packages (branch `main` or a future version tag):
    - `https://github.com/RknDEV1/swift-toolkit.git`
    - `https://github.com/RknDEV1/swift-ui-kit.git`
 4. Copy the files from `Sources/ToolkitDemo` into your app target
-5. Build and run
+5. Set the app entry to `ContentView()`
+6. Build and run
 
 ### Option B – Swift Package
 

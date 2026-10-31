@@ -14,8 +14,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/RknDEV1/swift-toolkit.git", from: "0.1.0"),
-        .package(url: "https://github.com/RknDEV1/swift-ui-kit.git", from: "0.1.0")
+        .package(url: "https://github.com/RknDEV1/swift-toolkit.git", branch: "main"),
+        .package(url: "https://github.com/RknDEV1/swift-ui-kit.git", branch: "main")
     ],
     targets: [
         .target(
