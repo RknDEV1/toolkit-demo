@@ -14,23 +14,16 @@ struct ValidatorsDemoView: View {
                 CardView {
                     VStack(alignment: .leading, spacing: 16) {
                         ValidatedTextField("Email", text: $email)
-                        status(
-                            "Email valid",
-                            Validator.isValidEmail(email)
-                        )
+                        status("Email valid", Validator.isValidEmail(email))
 
                         ValidatedTextField("CPF", text: $cpf)
-                        status(
-                            "CPF valid",
-                            Validator.isValidCPF(cpf)
-                        )
+                        status("CPF valid", Validator.isValidCPF(cpf))
                     }
                 }
             }
             .padding()
         }
         .navigationTitle("Validators")
-        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func status(_ title: String, _ ok: Bool) -> some View {

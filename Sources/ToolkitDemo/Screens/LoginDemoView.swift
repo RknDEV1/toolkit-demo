@@ -35,9 +35,7 @@ struct LoginDemoView: View {
                     signIn()
                 }
 
-                SecondaryButton("Create Account") {
-                    // demo only
-                }
+                SecondaryButton("Create Account") {}
 
                 if showToast {
                     ToastView("Signed in successfully", systemImage: "checkmark.circle")
@@ -47,7 +45,6 @@ struct LoginDemoView: View {
             .padding()
         }
         .navigationTitle("Login")
-        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func signIn() {

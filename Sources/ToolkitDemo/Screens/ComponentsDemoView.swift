@@ -29,6 +29,5 @@ struct ComponentsDemoView: View {
             .padding()
         }
         .navigationTitle("Components")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }

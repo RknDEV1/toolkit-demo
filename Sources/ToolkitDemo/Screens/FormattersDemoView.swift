@@ -24,7 +24,6 @@ struct FormattersDemoView: View {
             .padding()
         }
         .navigationTitle("Formatters")
-        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func row(_ title: String, _ value: String) -> some View {
