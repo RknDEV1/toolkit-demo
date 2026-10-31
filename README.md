@@ -1,15 +1,17 @@
 # Toolkit Demo
 
-Sample app that showcases **[swift-toolkit](https://github.com/RknDEV1/swift-toolkit)** and **[swift-ui-kit](https://github.com/RknDEV1/swift-ui-kit)** working together.
+Sample screens that showcase **[swift-toolkit](https://github.com/RknDEV1/swift-toolkit)** and **[swift-ui-kit](https://github.com/RknDEV1/swift-ui-kit)** together.
 
 > Portuguese: [README.pt-BR.md](README.pt-BR.md)
 
 ## Screens
 
-- **Login** – validated fields, primary/secondary buttons, toast and haptics
-- **Formatters** – currency, numbers and dates (pt-BR)
-- **Validators** – email and CPF live validation
-- **Components** – buttons, cards and toast
+| Screen | What it shows |
+|--------|----------------|
+| Login | Validated fields, buttons, toast, haptics |
+| Formatters | Currency, numbers, dates (pt-BR) |
+| Validators | Live email and CPF checks |
+| Components | Buttons, card, toast |
 
 ## Requirements
 
@@ -17,33 +19,30 @@ Sample app that showcases **[swift-toolkit](https://github.com/RknDEV1/swift-too
 - Xcode 15+
 - Swift 5.9+
 
-## How to run
+## Run in Xcode (recommended)
 
-### Option A – Xcode
+1. **File → New → Project → App** (SwiftUI, iOS)
+2. **File → Add Package Dependencies…**
+   - `https://github.com/RknDEV1/swift-toolkit.git` → branch **main**
+   - `https://github.com/RknDEV1/swift-ui-kit.git` → branch **main**
+3. Copy the Swift files from `Sources/ToolkitDemo` into your app target
+4. In your `@main` App, use:
 
-1. Clone this repository
-2. Create a new iOS App project (SwiftUI)
-3. Add the packages (branch `main` or a future version tag):
-   - `https://github.com/RknDEV1/swift-toolkit.git`
-   - `https://github.com/RknDEV1/swift-ui-kit.git`
-4. Copy the files from `Sources/ToolkitDemo` into your app target
-5. Set the app entry to `ContentView()`
-6. Build and run
-
-### Option B – Swift Package
-
-```bash
-git clone https://github.com/RknDEV1/toolkit-demo.git
-cd toolkit-demo
-swift build
+```swift
+WindowGroup {
+    ContentView()
+}
 ```
 
-## Dependencies
+5. Build & Run on simulator or device
 
-| Package | Role |
-|---------|------|
-| [swift-toolkit](https://github.com/RknDEV1/swift-toolkit) | Validators, formatters, Keychain, haptics, networking |
-| [swift-ui-kit](https://github.com/RknDEV1/swift-ui-kit) | Buttons, text fields, cards, toasts, headers |
+## Note about CI
+
+Automated CI on this demo repo was disabled because GitHub cancelled macOS jobs before they started (account/runner limits or Actions settings).  
+Package quality is covered by CI on:
+
+- https://github.com/RknDEV1/swift-toolkit/actions
+- https://github.com/RknDEV1/swift-ui-kit/actions
 
 ## License
 

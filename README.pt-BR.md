@@ -1,15 +1,17 @@
 # Toolkit Demo
 
-App de demonstração que mostra o uso conjunto de **[swift-toolkit](https://github.com/RknDEV1/swift-toolkit)** e **[swift-ui-kit](https://github.com/RknDEV1/swift-ui-kit)**.
+Telas de exemplo usando **[swift-toolkit](https://github.com/RknDEV1/swift-toolkit)** e **[swift-ui-kit](https://github.com/RknDEV1/swift-ui-kit)** juntos.
 
 > English: [README.md](README.md)
 
 ## Telas
 
-- **Login** – campos validados, botões, toast e haptics
-- **Formatters** – moeda, números e datas (pt-BR)
-- **Validators** – validação ao vivo de e-mail e CPF
-- **Components** – botões, cards e toast
+| Tela | O que mostra |
+|------|----------------|
+| Login | Campos validados, botões, toast, haptics |
+| Formatters | Moeda, números, datas (pt-BR) |
+| Validators | E-mail e CPF ao vivo |
+| Components | Botões, card, toast |
 
 ## Requisitos
 
@@ -17,32 +19,30 @@ App de demonstração que mostra o uso conjunto de **[swift-toolkit](https://git
 - Xcode 15+
 - Swift 5.9+
 
-## Como rodar
+## Como rodar no Xcode (recomendado)
 
-### Opção A – Xcode
+1. **File → New → Project → App** (SwiftUI, iOS)
+2. **File → Add Package Dependencies…**
+   - `https://github.com/RknDEV1/swift-toolkit.git` → branch **main**
+   - `https://github.com/RknDEV1/swift-ui-kit.git` → branch **main**
+3. Copie os arquivos de `Sources/ToolkitDemo` para o target do app
+4. No App `@main`, use:
 
-1. Clone este repositório
-2. Crie um app iOS (SwiftUI)
-3. Adicione os pacotes:
-   - `https://github.com/RknDEV1/swift-toolkit.git`
-   - `https://github.com/RknDEV1/swift-ui-kit.git`
-4. Copie os arquivos de `Sources/ToolkitDemo` para o target do app
-5. Compile e execute
-
-### Opção B – Swift Package
-
-```bash
-git clone https://github.com/RknDEV1/toolkit-demo.git
-cd toolkit-demo
-swift build
+```swift
+WindowGroup {
+    ContentView()
+}
 ```
 
-## Dependências
+5. Compile e execute no simulador ou no iPhone
 
-| Pacote | Função |
-|--------|--------|
-| [swift-toolkit](https://github.com/RknDEV1/swift-toolkit) | Validadores, formatadores, Keychain, haptics, rede |
-| [swift-ui-kit](https://github.com/RknDEV1/swift-ui-kit) | Botões, campos, cards, toasts, cabeçalhos |
+## Sobre o CI
+
+O CI deste repositório foi desativado porque o GitHub cancelava os jobs macOS antes de iniciar (limite da conta ou permissões do Actions).  
+A qualidade dos pacotes continua coberta por:
+
+- https://github.com/RknDEV1/swift-toolkit/actions
+- https://github.com/RknDEV1/swift-ui-kit/actions
 
 ## Licença
 
