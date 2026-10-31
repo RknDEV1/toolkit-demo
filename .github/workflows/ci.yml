@@ -1,3 +1,20 @@
-# CI disabled: macOS runners were cancelled immediately on this repository.
-# Build verification lives in swift-toolkit and swift-ui-kit workflows.
-# To re-enable: fix Actions permissions / billing, then restore a macos-14 job.
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Package.swift exists
+        run: |
+          test -f Package.swift
+          test -d Sources/ToolkitDemo
+          echo "Repository structure OK"
