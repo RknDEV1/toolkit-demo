@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Entry point reference for embedding the demo in an iOS app target.
-/// Create an App with `@main` in your Xcode project and use `ContentView()`.ootView.
+/// Entry helper for embedding the demo in an iOS app target.
+/// In your Xcode App, use `ContentView()` as the root view.
 public enum ToolkitDemoEntry {
     public static var rootView: some View {
         ContentView()
