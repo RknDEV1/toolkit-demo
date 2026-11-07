@@ -4,13 +4,17 @@ import SwiftUIKit
 struct ShareDemoView: View {
     @State private var text = "Aju Util — utilidades para Aracaju"
     @State private var showToast = false
+    @State private var appear = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Compartilhar", subtitle: "Share Sheet nativo")
+                    .opacity(appear ? 1 : 0)
+                    .offset(y: appear ? 0 : 8)
 
                 ValidatedTextField("Texto para compartilhar", text: $text)
+                    .opacity(appear ? 1 : 0)
 
                 ShareLink(item: text) {
                     Label("Compartilhar texto", systemImage: "square.and.arrow.up")
@@ -19,24 +23,33 @@ struct ShareDemoView: View {
                         .background(Color.accentColor.opacity(0.15))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
+                .opacity(appear ? 1 : 0)
+                .scaleEffect(appear ? 1 : 0.97)
 
                 PrimaryButton("Copiar para área de transferência") {
                     #if canImport(UIKit)
                     UIPasteboard.general.string = text
                     #endif
-                    showToast = true
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        showToast = true
+                    }
+                    Haptic.success()
                 }
 
                 if showToast {
                     ToastView(message: "Copiado!", isPresented: $showToast)
+                        .transition(.move(edge: .top).combined(with: .opacity))
                 }
 
                 Text("Útil para contatos, endereços, códigos e links.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+                    .opacity(appear ? 1 : 0)
             }
             .padding()
+            .animation(.easeOut(duration: 0.35), value: appear)
         }
         .navigationTitle("Compartilhar")
+        .onAppear { appear = true }
     }
 }

@@ -3,35 +3,57 @@ import SwiftToolkit
 import SwiftUIKit
 
 struct ValidatorsDemoView: View {
-    @State private var email = "user@example.com"
-    @State private var cpf = "390.533.447-05"
+    @State private var email = ""
+    @State private var cpf = ""
+    @State private var appear = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                SectionHeader("Validators", subtitle: "Email and CPF")
+                SectionHeader("Validators", subtitle: "E-mail e CPF ao vivo")
+                    .opacity(appear ? 1 : 0)
+                    .offset(y: appear ? 0 : 8)
 
-                CardView {
-                    VStack(alignment: .leading, spacing: 16) {
-                        ValidatedTextField("Email", text: $email)
-                        status("Email valid", Validator.isValidEmail(email))
+                ValidatedTextField(
+                    "E-mail",
+                    text: $email,
+                    errorMessage: email.isEmpty ? nil : (Validator.isValidEmail(email) ? nil : "E-mail inválido")
+                )
+                .opacity(appear ? 1 : 0)
 
-                        ValidatedTextField("CPF", text: $cpf)
-                        status("CPF valid", Validator.isValidCPF(cpf))
+                ValidatedTextField(
+                    "CPF",
+                    text: $cpf,
+                    errorMessage: cpf.isEmpty ? nil : (Validator.isValidCPF(cpf) ? nil : "CPF inválido")
+                )
+                .opacity(appear ? 1 : 0)
+
+                if !email.isEmpty || !cpf.isEmpty {
+                    CardView {
+                        VStack(alignment: .leading, spacing: 6) {
+                            statusRow("E-mail", valid: Validator.isValidEmail(email))
+                            statusRow("CPF", valid: Validator.isValidCPF(cpf))
+                        }
                     }
+                    .transition(.opacity.combined(with: .move(edge: .top)))
                 }
             }
             .padding()
+            .animation(.easeOut(duration: 0.4), value: appear)
+            .animation(.easeInOut(duration: 0.2), value: email)
+            .animation(.easeInOut(duration: 0.2), value: cpf)
         }
         .navigationTitle("Validators")
+        .onAppear { appear = true }
     }
 
-    private func status(_ title: String, _ ok: Bool) -> some View {
+    private func statusRow(_ title: String, valid: Bool) -> some View {
         HStack {
             Text(title)
             Spacer()
-            Image(systemName: ok ? "checkmark.circle.fill" : "xmark.circle.fill")
-                .foregroundStyle(ok ? .green : .red)
+            Image(systemName: valid ? "checkmark.circle.fill" : "xmark.circle.fill")
+                .foregroundStyle(valid ? .green : .red)
+                .transition(.scale.combined(with: .opacity))
         }
     }
 }

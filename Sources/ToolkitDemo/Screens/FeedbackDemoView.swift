@@ -5,46 +5,58 @@ import SwiftUIKit
 struct FeedbackDemoView: View {
     @State private var showToast = false
     @State private var toastMessage = ""
+    @State private var appear = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Feedback", subtitle: "Haptics e toasts")
+                    .opacity(appear ? 1 : 0)
+                    .offset(y: appear ? 0 : 8)
 
                 PrimaryButton("Haptic — Sucesso") {
-                    Haptic.success()
-                    toastMessage = "Sucesso"
-                    showToast = true
+                    trigger("Sucesso", haptic: Haptic.success)
                 }
+                .opacity(appear ? 1 : 0)
 
                 PrimaryButton("Haptic — Aviso") {
-                    Haptic.warning()
-                    toastMessage = "Atenção"
-                    showToast = true
+                    trigger("Atenção", haptic: Haptic.warning)
                 }
+                .opacity(appear ? 1 : 0)
 
                 PrimaryButton("Haptic — Erro") {
-                    Haptic.error()
-                    toastMessage = "Erro"
-                    showToast = true
+                    trigger("Erro", haptic: Haptic.error)
                 }
+                .opacity(appear ? 1 : 0)
 
                 SecondaryButton("Haptic — Seleção") {
-                    Haptic.selection()
-                    toastMessage = "Selecionado"
-                    showToast = true
+                    trigger("Selecionado", haptic: Haptic.selection)
                 }
+                .opacity(appear ? 1 : 0)
 
                 if showToast {
                     ToastView(message: toastMessage, isPresented: $showToast)
+                        .transition(.move(edge: .top).combined(with: .opacity))
                 }
 
                 Text("Feedback tátil melhora a percepção de qualidade do app.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+                    .opacity(appear ? 1 : 0)
             }
             .padding()
+            .animation(.easeOut(duration: 0.4), value: appear)
+            .animation(.spring(response: 0.3, dampingFraction: 0.75), value: showToast)
         }
         .navigationTitle("Feedback")
+        .onAppear { appear = true }
+    }
+
+    private func trigger(_ message: String, haptic: () -> Void) {
+        haptic()
+        toastMessage = message
+        withAnimation {
+            showToast = true
+        }
     }
 }

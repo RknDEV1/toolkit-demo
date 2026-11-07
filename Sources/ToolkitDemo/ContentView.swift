@@ -53,17 +53,32 @@ public struct ContentView: View {
                 }
 
                 Section("Componentes") {
-                    NavigationLink("Login simples") {
+                    NavigationLink {
                         LoginDemoView()
+                            .transition(.opacity)
+                    } label: {
+                        Label("Login simples", systemImage: "person")
                     }
-                    NavigationLink("Formatters") {
+
+                    NavigationLink {
                         FormattersDemoView()
+                            .transition(.opacity)
+                    } label: {
+                        Label("Formatters", systemImage: "textformat")
                     }
-                    NavigationLink("Validators") {
+
+                    NavigationLink {
                         ValidatorsDemoView()
+                            .transition(.opacity)
+                    } label: {
+                        Label("Validators", systemImage: "checkmark.shield")
                     }
-                    NavigationLink("Components") {
+
+                    NavigationLink {
                         ComponentsDemoView()
+                            .transition(.opacity)
+                    } label: {
+                        Label("Components", systemImage: "square.grid.2x2")
                     }
                 }
             }
