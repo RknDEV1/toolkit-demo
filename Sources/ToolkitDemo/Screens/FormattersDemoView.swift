@@ -9,7 +9,7 @@ struct FormattersDemoView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                SectionHeader("Formatters", subtitle: "Moeda, números e datas")
+                SectionHeader("Formatters", subtitle: "Moeda e números (pt-BR)")
                     .opacity(appear ? 1 : 0)
                     .offset(y: appear ? 0 : 8)
 
@@ -30,12 +30,12 @@ struct FormattersDemoView: View {
 
                 CardView {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("Data")
+                        Text("Número")
                             .font(.caption)
                             .foregroundStyle(.secondary)
-                        Text(Formatters.shortDate(Date()))
-                        Text(Formatters.mediumDate(Date()))
-                            .foregroundStyle(.secondary)
+                        Text(Formatters.number(value, fractionDigits: 2))
+                            .font(.title3.monospaced())
+                            .contentTransition(.numericText())
                     }
                 }
                 .opacity(appear ? 1 : 0)
