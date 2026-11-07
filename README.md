@@ -8,6 +8,7 @@ Sample screens that showcase **[swift-toolkit](https://github.com/RknDEV1/swift-
 
 | Screen | What it shows |
 |--------|----------------|
+| **Segurança (Biometria)** | Face ID / Touch ID + Keychain protegido |
 | Login | Validated fields, buttons, toast, haptics |
 | Formatters | Currency, numbers, dates (pt-BR) |
 | Validators | Live email and CPF checks |
@@ -36,13 +37,7 @@ WindowGroup {
 
 5. Build & Run on simulator or device
 
-## Note about CI
-
-Automated CI on this demo repo was disabled because GitHub cancelled macOS jobs before they started (account/runner limits or Actions settings).  
-Package quality is covered by CI on:
-
-- https://github.com/RknDEV1/swift-toolkit/actions
-- https://github.com/RknDEV1/swift-ui-kit/actions
+**Note:** On the simulator, use **Features → Face ID / Touch ID** to simulate biometrics.
 
 ## License
 
