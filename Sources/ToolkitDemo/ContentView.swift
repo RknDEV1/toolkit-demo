@@ -8,25 +8,45 @@ public struct ContentView: View {
         NavigationStack {
             List {
                 Section("Segurança") {
-                    NavigationLink("Login com Face ID") {
+                    NavigationLink {
                         FaceIDLoginView()
-                            .transition(.opacity)
+                            .navigationTransition(.zoom(sourceID: "faceid", in: namespace))
+                    } label: {
+                        Label("Login com Face ID", systemImage: "faceid")
                     }
-                    NavigationLink("Biometria + Keychain") {
+                    .matchedTransitionSource(id: "faceid", in: namespace)
+
+                    NavigationLink {
                         SecureStorageDemoView()
-                            .transition(.opacity)
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .trailing).combined(with: .opacity),
+                                removal: .move(edge: .leading).combined(with: .opacity)
+                            ))
+                    } label: {
+                        Label("Biometria + Keychain", systemImage: "lock.shield")
                     }
                 }
 
                 Section("Utilidade") {
-                    NavigationLink("Rede (loading / erro)") {
+                    NavigationLink {
                         NetworkDemoView()
+                            .transition(.opacity.combined(with: .scale(scale: 0.98)))
+                    } label: {
+                        Label("Rede (loading / erro)", systemImage: "network")
                     }
-                    NavigationLink("Compartilhar") {
+
+                    NavigationLink {
                         ShareDemoView()
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    } label: {
+                        Label("Compartilhar", systemImage: "square.and.arrow.up")
                     }
-                    NavigationLink("Feedback (haptics)") {
+
+                    NavigationLink {
                         FeedbackDemoView()
+                            .transition(.opacity)
+                    } label: {
+                        Label("Feedback (haptics)", systemImage: "waveform")
                     }
                 }
 
@@ -46,6 +66,12 @@ public struct ContentView: View {
                 }
             }
             .navigationTitle("Toolkit Demo")
+            .navigationDestination(for: String.self) { _ in
+                EmptyView()
+            }
         }
+        .animation(.spring(response: 0.4, dampingFraction: 0.85), value: UUID())
     }
+
+    @Namespace private var namespace
 }

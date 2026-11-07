@@ -19,20 +19,20 @@ struct FaceIDLoginView: View {
                 Image(systemName: "faceid")
                     .font(.system(size: 64))
                     .foregroundStyle(.tint)
-                    .scaleEffect(appear ? 1 : 0.6)
+                    .scaleEffect(appear ? 1 : 0.5)
                     .opacity(appear ? 1 : 0)
-                    .animation(.spring(response: 0.5, dampingFraction: 0.7).delay(0.1), value: appear)
+                    .animation(.spring(response: 0.55, dampingFraction: 0.7).delay(0.05), value: appear)
 
                 Text("Entrar")
                     .font(.largeTitle.weight(.bold))
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 10)
-                    .animation(.easeOut(duration: 0.4).delay(0.15), value: appear)
+                    .offset(y: appear ? 0 : 12)
+                    .animation(.easeOut(duration: 0.4).delay(0.12), value: appear)
 
                 Text("Use e-mail e senha ou Face ID")
                     .foregroundStyle(.secondary)
                     .opacity(appear ? 1 : 0)
-                    .animation(.easeOut(duration: 0.4).delay(0.2), value: appear)
+                    .animation(.easeOut(duration: 0.4).delay(0.18), value: appear)
 
                 VStack(spacing: 16) {
                     ValidatedTextField("E-mail", text: $email)
@@ -59,8 +59,8 @@ struct FaceIDLoginView: View {
                     .disabled(!BiometricAuth.isAvailable || isLoading)
                 }
                 .opacity(appear ? 1 : 0)
-                .offset(y: appear ? 0 : 20)
-                .animation(.easeOut(duration: 0.45).delay(0.25), value: appear)
+                .offset(y: appear ? 0 : 24)
+                .animation(.easeOut(duration: 0.5).delay(0.22), value: appear)
 
                 if !status.isEmpty {
                     Text(status)
@@ -85,7 +85,7 @@ struct FaceIDLoginView: View {
                         .frame(maxWidth: .infinity)
                     }
                     .transition(.asymmetric(
-                        insertion: .scale(scale: 0.9).combined(with: .opacity),
+                        insertion: .scale(scale: 0.85).combined(with: .opacity),
                         removal: .opacity
                     ))
                 }
@@ -93,7 +93,7 @@ struct FaceIDLoginView: View {
                 Spacer()
             }
             .padding()
-            .animation(.spring(response: 0.45, dampingFraction: 0.8), value: isLoggedIn)
+            .animation(.spring(response: 0.45, dampingFraction: 0.82), value: isLoggedIn)
             .animation(.easeInOut(duration: 0.25), value: status)
         }
         .navigationTitle("Login")
