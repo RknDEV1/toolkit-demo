@@ -6,13 +6,25 @@ Sample screens that showcase **[swift-toolkit](https://github.com/RknDEV1/swift-
 
 ## Screens
 
+### Segurança
 | Screen | What it shows |
 |--------|----------------|
-| **Segurança (Biometria)** | Face ID / Touch ID + Keychain protegido |
-| Login | Validated fields, buttons, toast, haptics |
-| Formatters | Currency, numbers, dates (pt-BR) |
-| Validators | Live email and CPF checks |
-| Components | Buttons, card, toast |
+| Biometria + Keychain | Face ID / Touch ID + armazenamento protegido |
+
+### Utilidade
+| Screen | What it shows |
+|--------|----------------|
+| Rede | Estados de loading, sucesso e erro |
+| Compartilhar | Share Sheet nativo + copiar |
+| Feedback | Haptics (sucesso, aviso, erro) + toast |
+
+### Componentes
+| Screen | What it shows |
+|--------|----------------|
+| Login | Campos validados, botões, toast |
+| Formatters | Moeda, números, datas |
+| Validators | E-mail e CPF ao vivo |
+| Components | Botões, cards, toast |
 
 ## Requirements
 
@@ -20,24 +32,16 @@ Sample screens that showcase **[swift-toolkit](https://github.com/RknDEV1/swift-
 - Xcode 15+
 - Swift 5.9+
 
-## Run in Xcode (recommended)
+## Run in Xcode
 
-1. **File → New → Project → App** (SwiftUI, iOS)
-2. **File → Add Package Dependencies…**
-   - `https://github.com/RknDEV1/swift-toolkit.git` → branch **main**
-   - `https://github.com/RknDEV1/swift-ui-kit.git` → branch **main**
-3. Copy the Swift files from `Sources/ToolkitDemo` into your app target
-4. In your `@main` App, use:
+1. **File → New → Project → App** (SwiftUI)
+2. Add packages (branch `main`):
+   - `https://github.com/RknDEV1/swift-toolkit.git`
+   - `https://github.com/RknDEV1/swift-ui-kit.git`
+3. Copy files from `Sources/ToolkitDemo`
+4. Use `ContentView()` as root
 
-```swift
-WindowGroup {
-    ContentView()
-}
-```
-
-5. Build & Run on simulator or device
-
-**Note:** On the simulator, use **Features → Face ID / Touch ID** to simulate biometrics.
+On simulator: **Features → Face ID / Touch ID** to test biometrics.
 
 ## License
 
