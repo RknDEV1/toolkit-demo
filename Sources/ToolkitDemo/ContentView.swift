@@ -8,6 +8,9 @@ public struct ContentView: View {
         NavigationStack {
             List {
                 Section("Segurança") {
+                    NavigationLink("Login com Face ID") {
+                        FaceIDLoginView()
+                    }
                     NavigationLink("Biometria + Keychain") {
                         SecureStorageDemoView()
                     }
@@ -26,7 +29,7 @@ public struct ContentView: View {
                 }
 
                 Section("Componentes") {
-                    NavigationLink("Login") {
+                    NavigationLink("Login simples") {
                         LoginDemoView()
                     }
                     NavigationLink("Formatters") {
