@@ -7,15 +7,14 @@ Telas de exemplo usando **[swift-toolkit](https://github.com/RknDEV1/swift-toolk
 ## Telas
 
 ### Segurança
-- **Biometria + Keychain** — Face ID / Touch ID e armazenamento protegido
+- **Login com Face ID** — e-mail/senha ou biometria
+- **Biometria + Keychain** — armazenamento protegido
 
 ### Utilidade
-- **Rede** — loading, sucesso e erro
-- **Compartilhar** — Share Sheet + copiar
-- **Feedback** — haptics e toast
+- Rede, Compartilhar, Feedback (haptics)
 
 ### Componentes
-- Login, Formatters, Validators, Components
+- Login simples, Formatters, Validators, Components
 
 No simulador: **Features → Face ID / Touch ID** para testar biometria.
 

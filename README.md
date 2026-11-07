@@ -9,21 +9,22 @@ Sample screens that showcase **[swift-toolkit](https://github.com/RknDEV1/swift-
 ### Segurança
 | Screen | What it shows |
 |--------|----------------|
-| Biometria + Keychain | Face ID / Touch ID + armazenamento protegido |
+| **Login com Face ID** | Tela de login com e-mail/senha ou biometria |
+| Biometria + Keychain | Armazenamento protegido por Face ID / Touch ID |
 
 ### Utilidade
 | Screen | What it shows |
 |--------|----------------|
 | Rede | Estados de loading, sucesso e erro |
 | Compartilhar | Share Sheet nativo + copiar |
-| Feedback | Haptics (sucesso, aviso, erro) + toast |
+| Feedback | Haptics + toast |
 
 ### Componentes
 | Screen | What it shows |
 |--------|----------------|
-| Login | Campos validados, botões, toast |
+| Login simples | Campos validados |
 | Formatters | Moeda, números, datas |
-| Validators | E-mail e CPF ao vivo |
+| Validators | E-mail e CPF |
 | Components | Botões, cards, toast |
 
 ## Requirements
