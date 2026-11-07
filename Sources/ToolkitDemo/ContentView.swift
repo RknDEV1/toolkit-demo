@@ -10,9 +10,11 @@ public struct ContentView: View {
                 Section("Segurança") {
                     NavigationLink("Login com Face ID") {
                         FaceIDLoginView()
+                            .transition(.opacity)
                     }
                     NavigationLink("Biometria + Keychain") {
                         SecureStorageDemoView()
+                            .transition(.opacity)
                     }
                 }
 

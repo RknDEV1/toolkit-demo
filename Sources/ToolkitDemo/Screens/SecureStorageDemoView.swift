@@ -7,6 +7,7 @@ struct SecureStorageDemoView: View {
     @State private var savedValue = ""
     @State private var loadedValue = ""
     @State private var isLoading = false
+    @State private var appear = false
 
     private let demoKey = "demo-secret"
 
@@ -14,6 +15,8 @@ struct SecureStorageDemoView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Armazenamento seguro + Biometria")
+                    .opacity(appear ? 1 : 0)
+                    .offset(y: appear ? 0 : 8)
 
                 CardView {
                     VStack(alignment: .leading, spacing: 12) {
@@ -21,6 +24,8 @@ struct SecureStorageDemoView: View {
                             Image(systemName: biometricIcon)
                                 .font(.title2)
                                 .foregroundStyle(BiometricAuth.isAvailable ? .green : .secondary)
+                                .symbolEffect(.pulse, isActive: isLoading)
+
                             VStack(alignment: .leading) {
                                 Text(BiometricAuth.typeName)
                                     .font(.headline)
@@ -35,6 +40,8 @@ struct SecureStorageDemoView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
+                .opacity(appear ? 1 : 0)
+                .scaleEffect(appear ? 1 : 0.96)
 
                 ValidatedTextField("Valor secreto", text: $savedValue)
 
@@ -57,6 +64,10 @@ struct SecureStorageDemoView: View {
                                 .font(.body.monospaced())
                         }
                     }
+                    .transition(.asymmetric(
+                        insertion: .scale(scale: 0.95).combined(with: .opacity),
+                        removal: .opacity
+                    ))
                 }
 
                 Text("No simulador a biometria pode ser simulada pelo menu Features → Face ID / Touch ID.")
@@ -64,8 +75,15 @@ struct SecureStorageDemoView: View {
                     .foregroundStyle(.tertiary)
             }
             .padding()
+            .animation(.spring(response: 0.4, dampingFraction: 0.8), value: loadedValue)
+            .animation(.easeInOut(duration: 0.2), value: status)
         }
         .navigationTitle("Segurança")
+        .onAppear {
+            withAnimation(.easeOut(duration: 0.45)) {
+                appear = true
+            }
+        }
     }
 
     private var biometricIcon: String {
@@ -85,8 +103,10 @@ struct SecureStorageDemoView: View {
             try SecureStorage.saveWithBiometrics(savedValue, forKey: demoKey)
             status = "Salvo com sucesso"
             loadedValue = ""
+            Haptic.success()
         } catch {
             status = error.localizedDescription
+            Haptic.error()
         }
     }
 
@@ -99,6 +119,7 @@ struct SecureStorageDemoView: View {
             if let value = try SecureStorage.loadWithBiometrics(forKey: demoKey) {
                 loadedValue = value
                 status = "Lido com sucesso"
+                Haptic.success()
             } else {
                 status = "Nenhum valor encontrado"
                 loadedValue = ""
@@ -106,6 +127,7 @@ struct SecureStorageDemoView: View {
         } catch {
             status = error.localizedDescription
             loadedValue = ""
+            Haptic.error()
         }
     }
 }
