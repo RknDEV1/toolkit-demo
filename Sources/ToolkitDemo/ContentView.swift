@@ -7,6 +7,9 @@ public struct ContentView: View {
     public var body: some View {
         NavigationStack {
             List {
+                NavigationLink("Segurança (Biometria)") {
+                    SecureStorageDemoView()
+                }
                 NavigationLink("Login") {
                     LoginDemoView()
                 }
