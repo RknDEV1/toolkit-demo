@@ -10,17 +10,19 @@ public struct ContentView: View {
                 Section("Segurança") {
                     NavigationLink {
                         FaceIDLoginView()
-                            .navigationTransition(.zoom(sourceID: "faceid", in: namespace))
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .trailing).combined(with: .opacity),
+                                removal: .move(edge: .leading).combined(with: .opacity)
+                            ))
                     } label: {
                         Label("Login com Face ID", systemImage: "faceid")
                     }
-                    .matchedTransitionSource(id: "faceid", in: namespace)
 
                     NavigationLink {
                         SecureStorageDemoView()
                             .transition(.asymmetric(
-                                insertion: .move(edge: .trailing).combined(with: .opacity),
-                                removal: .move(edge: .leading).combined(with: .opacity)
+                                insertion: .scale(scale: 0.96).combined(with: .opacity),
+                                removal: .opacity
                             ))
                     } label: {
                         Label("Biometria + Keychain", systemImage: "lock.shield")
@@ -66,12 +68,6 @@ public struct ContentView: View {
                 }
             }
             .navigationTitle("Toolkit Demo")
-            .navigationDestination(for: String.self) { _ in
-                EmptyView()
-            }
         }
-        .animation(.spring(response: 0.4, dampingFraction: 0.85), value: UUID())
     }
-
-    @Namespace private var namespace
 }
