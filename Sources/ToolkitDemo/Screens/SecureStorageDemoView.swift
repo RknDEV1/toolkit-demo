@@ -16,7 +16,7 @@ struct SecureStorageDemoView: View {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Armazenamento seguro + Biometria")
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 8)
+                    .offset(y: appear ? 0 : 6)
 
                 CardView {
                     VStack(alignment: .leading, spacing: 12) {
@@ -41,7 +41,7 @@ struct SecureStorageDemoView: View {
                     }
                 }
                 .opacity(appear ? 1 : 0)
-                .scaleEffect(appear ? 1 : 0.96)
+                .scaleEffect(appear ? 1 : 0.98)
 
                 ValidatedTextField("Valor secreto", text: $savedValue)
 
@@ -65,7 +65,7 @@ struct SecureStorageDemoView: View {
                         }
                     }
                     .transition(.asymmetric(
-                        insertion: .scale(scale: 0.95).combined(with: .opacity),
+                        insertion: .scale(scale: 0.96).combined(with: .opacity),
                         removal: .opacity
                     ))
                 }
@@ -75,14 +75,12 @@ struct SecureStorageDemoView: View {
                     .foregroundStyle(.tertiary)
             }
             .padding()
-            .animation(.spring(response: 0.4, dampingFraction: 0.8), value: loadedValue)
-            .animation(.easeInOut(duration: 0.2), value: status)
+            .animation(AnimationTiming.spring, value: loadedValue)
+            .animation(AnimationTiming.quick, value: status)
         }
         .navigationTitle("Segurança")
         .onAppear {
-            withAnimation(.easeOut(duration: 0.45)) {
-                appear = true
-            }
+            withAnimation(AnimationTiming.entrance) { appear = true }
         }
     }
 

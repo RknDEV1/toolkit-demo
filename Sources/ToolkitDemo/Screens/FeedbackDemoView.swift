@@ -12,7 +12,7 @@ struct FeedbackDemoView: View {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Feedback", subtitle: "Haptics e toasts")
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 8)
+                    .offset(y: appear ? 0 : 6)
 
                 PrimaryButton("Haptic — Sucesso") {
                     trigger("Sucesso", haptic: Haptic.success)
@@ -45,8 +45,8 @@ struct FeedbackDemoView: View {
                     .opacity(appear ? 1 : 0)
             }
             .padding()
-            .animation(.easeOut(duration: 0.4), value: appear)
-            .animation(.spring(response: 0.3, dampingFraction: 0.75), value: showToast)
+            .animation(AnimationTiming.entrance, value: appear)
+            .animation(AnimationTiming.spring, value: showToast)
         }
         .navigationTitle("Feedback")
         .onAppear { appear = true }
@@ -55,7 +55,7 @@ struct FeedbackDemoView: View {
     private func trigger(_ message: String, haptic: () -> Void) {
         haptic()
         toastMessage = message
-        withAnimation {
+        withAnimation(AnimationTiming.spring) {
             showToast = true
         }
     }

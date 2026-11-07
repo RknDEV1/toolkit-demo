@@ -11,7 +11,7 @@ struct ShareDemoView: View {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Compartilhar", subtitle: "Share Sheet nativo")
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 8)
+                    .offset(y: appear ? 0 : 6)
 
                 ValidatedTextField("Texto para compartilhar", text: $text)
                     .opacity(appear ? 1 : 0)
@@ -24,13 +24,13 @@ struct ShareDemoView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .opacity(appear ? 1 : 0)
-                .scaleEffect(appear ? 1 : 0.97)
+                .scaleEffect(appear ? 1 : 0.98)
 
                 PrimaryButton("Copiar para área de transferência") {
                     #if canImport(UIKit)
                     UIPasteboard.general.string = text
                     #endif
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    withAnimation(AnimationTiming.spring) {
                         showToast = true
                     }
                     Haptic.success()
@@ -47,7 +47,7 @@ struct ShareDemoView: View {
                     .opacity(appear ? 1 : 0)
             }
             .padding()
-            .animation(.easeOut(duration: 0.35), value: appear)
+            .animation(AnimationTiming.entrance, value: appear)
         }
         .navigationTitle("Compartilhar")
         .onAppear { appear = true }

@@ -13,7 +13,7 @@ struct NetworkDemoView: View {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Rede", subtitle: "Estados de loading, sucesso e erro")
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 8)
+                    .offset(y: appear ? 0 : 6)
 
                 CardView {
                     VStack(alignment: .leading, spacing: 8) {
@@ -39,7 +39,7 @@ struct NetworkDemoView: View {
                     }
                 }
                 .opacity(appear ? 1 : 0)
-                .scaleEffect(appear ? 1 : 0.97)
+                .scaleEffect(appear ? 1 : 0.98)
 
                 PrimaryButton("Buscar JSON (sucesso)", isLoading: isLoading) {
                     Task { await fetchSuccess() }
@@ -55,12 +55,12 @@ struct NetworkDemoView: View {
                     .opacity(appear ? 1 : 0)
             }
             .padding()
-            .animation(.spring(response: 0.35, dampingFraction: 0.8), value: status)
-            .animation(.easeInOut(duration: 0.2), value: result)
+            .animation(AnimationTiming.spring, value: status)
+            .animation(AnimationTiming.quick, value: result)
         }
         .navigationTitle("Rede")
         .onAppear {
-            withAnimation(.easeOut(duration: 0.4)) { appear = true }
+            withAnimation(AnimationTiming.entrance) { appear = true }
         }
     }
 
@@ -82,7 +82,7 @@ struct NetworkDemoView: View {
         result = ""
         defer { isLoading = false }
 
-        try? await Task.sleep(nanoseconds: 800_000_000)
+        try? await Task.sleep(nanoseconds: 600_000_000)
 
         status = "Sucesso"
         result = "{\n  \"id\": 1,\n  \"name\": \"Aracaju\",\n  \"status\": \"ok\"\n}"
@@ -95,7 +95,7 @@ struct NetworkDemoView: View {
         result = ""
         defer { isLoading = false }
 
-        try? await Task.sleep(nanoseconds: 600_000_000)
+        try? await Task.sleep(nanoseconds: 450_000_000)
 
         status = "Erro de rede"
         result = "Sem conexão ou servidor indisponível"

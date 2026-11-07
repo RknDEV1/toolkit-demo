@@ -12,7 +12,7 @@ struct ValidatorsDemoView: View {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Validators", subtitle: "E-mail e CPF ao vivo")
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 8)
+                    .offset(y: appear ? 0 : 6)
 
                 ValidatedTextField(
                     "E-mail",
@@ -39,9 +39,9 @@ struct ValidatorsDemoView: View {
                 }
             }
             .padding()
-            .animation(.easeOut(duration: 0.4), value: appear)
-            .animation(.easeInOut(duration: 0.2), value: email)
-            .animation(.easeInOut(duration: 0.2), value: cpf)
+            .animation(AnimationTiming.entrance, value: appear)
+            .animation(AnimationTiming.quick, value: email)
+            .animation(AnimationTiming.quick, value: cpf)
         }
         .navigationTitle("Validators")
         .onAppear { appear = true }

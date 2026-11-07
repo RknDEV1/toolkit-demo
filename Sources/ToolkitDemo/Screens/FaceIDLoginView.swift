@@ -21,18 +21,18 @@ struct FaceIDLoginView: View {
                     .foregroundStyle(.tint)
                     .scaleEffect(appear ? 1 : 0.5)
                     .opacity(appear ? 1 : 0)
-                    .animation(.spring(response: 0.55, dampingFraction: 0.7).delay(0.05), value: appear)
+                    .animation(.spring(response: 0.38, dampingFraction: 0.72).delay(0.02), value: appear)
 
                 Text("Entrar")
                     .font(.largeTitle.weight(.bold))
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 12)
-                    .animation(.easeOut(duration: 0.4).delay(0.12), value: appear)
+                    .offset(y: appear ? 0 : 8)
+                    .animation(AnimationTiming.delay(1), value: appear)
 
                 Text("Use e-mail e senha ou Face ID")
                     .foregroundStyle(.secondary)
                     .opacity(appear ? 1 : 0)
-                    .animation(.easeOut(duration: 0.4).delay(0.18), value: appear)
+                    .animation(AnimationTiming.delay(2), value: appear)
 
                 VStack(spacing: 16) {
                     ValidatedTextField("E-mail", text: $email)
@@ -59,8 +59,8 @@ struct FaceIDLoginView: View {
                     .disabled(!BiometricAuth.isAvailable || isLoading)
                 }
                 .opacity(appear ? 1 : 0)
-                .offset(y: appear ? 0 : 24)
-                .animation(.easeOut(duration: 0.5).delay(0.22), value: appear)
+                .offset(y: appear ? 0 : 16)
+                .animation(AnimationTiming.delay(3), value: appear)
 
                 if !status.isEmpty {
                     Text(status)
@@ -85,7 +85,7 @@ struct FaceIDLoginView: View {
                         .frame(maxWidth: .infinity)
                     }
                     .transition(.asymmetric(
-                        insertion: .scale(scale: 0.85).combined(with: .opacity),
+                        insertion: .scale(scale: 0.9).combined(with: .opacity),
                         removal: .opacity
                     ))
                 }
@@ -93,8 +93,8 @@ struct FaceIDLoginView: View {
                 Spacer()
             }
             .padding()
-            .animation(.spring(response: 0.45, dampingFraction: 0.82), value: isLoggedIn)
-            .animation(.easeInOut(duration: 0.25), value: status)
+            .animation(AnimationTiming.spring, value: isLoggedIn)
+            .animation(AnimationTiming.quick, value: status)
         }
         .navigationTitle("Login")
         .navigationBarTitleDisplayMode(.inline)
@@ -120,7 +120,7 @@ struct FaceIDLoginView: View {
             return
         }
 
-        try? await Task.sleep(nanoseconds: 600_000_000)
+        try? await Task.sleep(nanoseconds: 500_000_000)
 
         isLoggedIn = true
         status = "Login com sucesso"

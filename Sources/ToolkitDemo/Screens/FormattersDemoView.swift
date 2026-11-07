@@ -11,7 +11,7 @@ struct FormattersDemoView: View {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Formatters", subtitle: "Moeda e números (pt-BR)")
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 8)
+                    .offset(y: appear ? 0 : 6)
 
                 CardView {
                     VStack(alignment: .leading, spacing: 10) {
@@ -41,8 +41,8 @@ struct FormattersDemoView: View {
                 .opacity(appear ? 1 : 0)
             }
             .padding()
-            .animation(.easeOut(duration: 0.4), value: appear)
-            .animation(.easeInOut(duration: 0.2), value: value)
+            .animation(AnimationTiming.entrance, value: appear)
+            .animation(AnimationTiming.quick, value: value)
         }
         .navigationTitle("Formatters")
         .onAppear { appear = true }

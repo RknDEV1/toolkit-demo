@@ -10,7 +10,7 @@ struct ComponentsDemoView: View {
             VStack(alignment: .leading, spacing: 20) {
                 SectionHeader("Components", subtitle: "Botões, cards e toast")
                     .opacity(appear ? 1 : 0)
-                    .offset(y: appear ? 0 : 8)
+                    .offset(y: appear ? 0 : 6)
 
                 PrimaryButton("Primary") {}
                     .opacity(appear ? 1 : 0)
@@ -28,10 +28,10 @@ struct ComponentsDemoView: View {
                     }
                 }
                 .opacity(appear ? 1 : 0)
-                .scaleEffect(appear ? 1 : 0.97)
+                .scaleEffect(appear ? 1 : 0.98)
 
                 PrimaryButton("Mostrar Toast") {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
+                    withAnimation(AnimationTiming.spring) {
                         showToast = true
                     }
                 }
@@ -42,8 +42,8 @@ struct ComponentsDemoView: View {
                 }
             }
             .padding()
-            .animation(.easeOut(duration: 0.4), value: appear)
-            .animation(.spring(response: 0.3, dampingFraction: 0.75), value: showToast)
+            .animation(AnimationTiming.entrance, value: appear)
+            .animation(AnimationTiming.spring, value: showToast)
         }
         .navigationTitle("Components")
         .onAppear { appear = true }
