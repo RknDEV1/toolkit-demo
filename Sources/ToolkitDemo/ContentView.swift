@@ -7,20 +7,37 @@ public struct ContentView: View {
     public var body: some View {
         NavigationStack {
             List {
-                NavigationLink("Segurança (Biometria)") {
-                    SecureStorageDemoView()
+                Section("Segurança") {
+                    NavigationLink("Biometria + Keychain") {
+                        SecureStorageDemoView()
+                    }
                 }
-                NavigationLink("Login") {
-                    LoginDemoView()
+
+                Section("Utilidade") {
+                    NavigationLink("Rede (loading / erro)") {
+                        NetworkDemoView()
+                    }
+                    NavigationLink("Compartilhar") {
+                        ShareDemoView()
+                    }
+                    NavigationLink("Feedback (haptics)") {
+                        FeedbackDemoView()
+                    }
                 }
-                NavigationLink("Formatters") {
-                    FormattersDemoView()
-                }
-                NavigationLink("Validators") {
-                    ValidatorsDemoView()
-                }
-                NavigationLink("Components") {
-                    ComponentsDemoView()
+
+                Section("Componentes") {
+                    NavigationLink("Login") {
+                        LoginDemoView()
+                    }
+                    NavigationLink("Formatters") {
+                        FormattersDemoView()
+                    }
+                    NavigationLink("Validators") {
+                        ValidatorsDemoView()
+                    }
+                    NavigationLink("Components") {
+                        ComponentsDemoView()
+                    }
                 }
             }
             .navigationTitle("Toolkit Demo")
